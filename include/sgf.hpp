@@ -117,7 +117,7 @@ namespace sgf {
       size_t x = 0;
 
     public:
-      StaticWorld2D(int width,int height,Position2D topLeft) 
+      StaticWorld2D(int width,int height,Position2D topLeft)
         : World2D(width,height,topLeft) {}
 
       Entity2D& Index(size_t i) {
@@ -152,3 +152,4 @@ namespace sgf {
       DynamicWorld2D(int width, int height, Position2D topLeft);
   };
 //-------------------------------------------------
+};
