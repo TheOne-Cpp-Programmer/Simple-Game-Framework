@@ -40,7 +40,7 @@ namespace sgf {
 
   class Entity2D {
     protected:
-      CollisionShape2D body = {0};
+      CollisionShape2D body = {0,0,0,0};
       Log entityLog;
 
     public:
@@ -59,7 +59,7 @@ namespace sgf {
   class Sprite2D {
     protected:
       Sprite pngImage;
-      Position2D position = {0};
+      Position2D position = {0,0};
       float scale = 1.f;
       float rotation = 0;
       Color tint = WHITE;
@@ -92,11 +92,11 @@ namespace sgf {
       int width = 0;
       int height = 0;
 
-      Position2D topLeft = {0};
-      Position2D bottomLeft= {0};
-      Position2D center = {0};
-      Position2D topRight = {0};
-      Position2D bottomRight = {0};
+      Position2D topLeft = {0,0};
+      Position2D bottomLeft= {0,0};
+      Position2D center = {0,0};
+      Position2D topRight = {0,0};
+      Position2D bottomRight = {0,0};
 
       Log worldLog;
     public:
