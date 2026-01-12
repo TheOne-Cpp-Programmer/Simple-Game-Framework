@@ -7,11 +7,10 @@ This is a simple, object oriented and lightweight framework for creating games. 
 - No ECS (Entity Component System) just raw object oriented power.
 - Easy to use and flexible.
 
-## Building the project
+# Building the project
+The Makefile automatically detects the operating system and configures appropriate compiler settings.
 
 ## Platform Detection
-
-The Makefile automatically detects the operating system and configures appropriate compiler settings:
 
 - **Linux**: Uses g++ with Linux-specific flags
 - **macOS**: Uses clang++ with macOS-specific flags  
