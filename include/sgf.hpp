@@ -101,6 +101,7 @@ namespace sgf {
       Log worldLog;
     public:
       World2D(int width,int height, Position2D topLeft);
+      void DrawBorder(Color color);
 
     public: // Getter Functionality
       const Position2D& GetCenter() const {return center;}
@@ -150,6 +151,8 @@ namespace sgf {
 
     public:
       DynamicWorld2D(int width, int height, Position2D topLeft);
+      void IncreasePopulation(Entity2D e);
+      Entity2D& Index(size_t i);
   };
 //-------------------------------------------------
 };

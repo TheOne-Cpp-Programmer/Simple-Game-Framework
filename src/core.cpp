@@ -1,5 +1,6 @@
 #include "../include/sgf.hpp"
 #include <iostream>
+#include <raylib.h>
 
 using namespace sgf;
 
@@ -156,10 +157,23 @@ World2D::World2D(int width, int height, Position2D topLeft) {
         this->topLeft.y + static_cast<float>(this->height)
     };
 }
+void World2D::DrawBorder(Color color) {
+    DrawLine(topLeft.x, topLeft.y, bottomLeft.x, bottomLeft.y, color);
+    DrawLine(topLeft.x, topLeft.y, topRight.x, topRight.x, color);
+    DrawLine(bottomRight.x, bottomRight.y, bottomLeft.x, bottomLeft.y, color);
+    DrawLine(bottomRight.x, bottomRight.y, topRight.x, topRight.y, color);
+}
 //----------------------------------------------------------------------------
 
 // DynamicWorld2D Class Implementation
 //----------------------------------------------------------------------------
 DynamicWorld2D::DynamicWorld2D(int width, int height, Position2D topLeft)
   : World2D(width,height,topLeft) {}
+
+void DynamicWorld2D::IncreasePopulation(Entity2D e) {
+    inhabitants.push_back(e);
+}
+Entity2D& DynamicWorld2D::Index(size_t i) {
+    return inhabitants.at(i);
+}
 //----------------------------------------------------------------------------
