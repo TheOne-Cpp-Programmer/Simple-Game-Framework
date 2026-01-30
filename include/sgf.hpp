@@ -36,11 +36,19 @@ namespace sgf {
       int max;
   } Range;
 
+  typedef struct Circle {
+      Position2D center;
+      float radius;
+  } Circle;
+
+  // This function only draws the the sorrounding lines of a
+  // CollisionShape2D and not the full Rectangle, for that
+  // raylib offers the DrawRectangleRec function.
   void DrawCollisionShape(CollisionShape2D &body, Color color);
 
   class Entity2D {
     protected:
-      CollisionShape2D body = {0,0,0,0};
+      Position2D position = {0,0};
       Log entityLog;
 
     public:
@@ -53,19 +61,16 @@ namespace sgf {
       static Position2D GetRandomPosition(Range xRange, Range yRange);
 
     protected:
-      Entity2D(Position2D startingPosition, float width, float height);
+      Entity2D(Position2D startingPosition);
   };
-  // Maybe letting Sprite2D inherit from Entity2D in the future idk
-  class Sprite2D {
+
+  class Sprite2D : public Entity2D {
     protected:
       Sprite pngImage;
-      Position2D position = {0,0};
       float scale = 1.f;
       float rotation = 0;
       Color tint = WHITE;
-
-      Log spriteLog;
-
+      CollisionShape2D collisionShape;
     public:
       void DrawSprite();
       void UnloadSprite();
@@ -76,15 +81,9 @@ namespace sgf {
       void SetTint(Color tint);
       void SetPosition(Position2D position);
 
-    protected:
+    public:
       Sprite2D(const std::string &&filePath, float scale, Position2D stPos);
       Sprite2D(const std::string &&filePath, Position2D stPos);
-  };
-
-  class SpriteEntity2D : public Entity2D, public Sprite2D {
-    protected:
-      SpriteEntity2D(const std::string &&filePath, float scale, Position2D startPos);
-      SpriteEntity2D(const std::string &&filePath, Position2D startPos);
   };
 
   class World2D {
@@ -151,7 +150,10 @@ namespace sgf {
 
     public:
       DynamicWorld2D(int width, int height, Position2D topLeft);
+
       void IncreasePopulation(Entity2D e);
+      void DecreasePopulation(size_t &i);
+
       Entity2D& Index(size_t i);
   };
 //-------------------------------------------------
